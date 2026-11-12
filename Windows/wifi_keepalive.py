@@ -5,7 +5,7 @@ import requests
 
 SSID_NAME = "INET - Free WiFi"
 GATEWAY_LOGIN = "http://192.168.200.1/login"
-CHECK_INTERVAL = 30  # Kiểm tra kết nối mỗi 30 giây
+CHECK_INTERVAL = 30
 
 def log(msg):
     ts = time.strftime("%Y-%m-%d %H:%M:%S")
@@ -70,7 +70,6 @@ def do_login_playwright():
         try:
             page.goto(GATEWAY_LOGIN, wait_until="domcontentloaded", timeout=10000)
             
-            # Simulate real user mouse activity
             page.mouse.move(100, 100)
             time.sleep(0.3)
             page.mouse.move(500, 300)
@@ -108,7 +107,6 @@ def main():
                 time.sleep(10)
                 continue
 
-            # Chỉ kiểm tra xem có internet hay không
             if check_internet():
                 log("Internet OK. Kết nối ổn định.")
             else:
